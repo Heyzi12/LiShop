@@ -1,0 +1,16 @@
+header{
+    background-color: blueviolet;
+}
+
+.products_container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.cart{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
