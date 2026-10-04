@@ -9,8 +9,7 @@ header{
     gap: 10px;
 }
 
-.cart{
+.bb{
     position: absolute;
-    width: 100px;
-    height: 100px;
+    right: 0cm !important;
 }

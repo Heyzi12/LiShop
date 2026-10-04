@@ -19,26 +19,52 @@
         
 
         <header>
-            <div class="title">LiShop</div>
-            <img src="img\LiShopLightContentLogo.png">
-            <!--  -->
-            <a class="cart" href="cart.html"></a>
+        <nav class="navbar" style="background-color: rgb(66, 66, 66);">
+            <div class="container-fluid">
+                <a class="navbar-brand"><img src="img\LiShopLightContentLogo.png" width="80px">
+            </a>
             <form class="d-flex" role="search">
-                <input class="form-control me-2 searchP" type="search" placeholder="Search" aria-label="Search"/>
-                <button class="btn btn-outline-success" type="submit">Search</button>
+            <input class="form-control me-2 searchP" type="search" placeholder="Search" aria-label="Search"/>
             </form>
-        </header>
+            <a class="btn btn-outline-success" href="index.html">На головну</a>
+            </div>
+            
+        </nav>
+
+        <!--  -->
+
+
+    </header>
 
         
         <main>
-            <div class="container-sm">
+            <div class="container-sm text-center" >
+                <h1 class="title my-4">Ваші товари</h1>
                 <div class="cart_container">
-
+                    <h3>кошик порожній</h3>
                 </div>
+                <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Оформити замовлення
+                </button>
             </div>
-
+            
         </main>
+        <!-- Button trigger modal -->
+        
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Оформлененя замовлення</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body order">
+                Кошик пустий
+            </div>
+        </div>
+        </div>
 
         <footer>
 

@@ -9,6 +9,7 @@ let products =[
 
 const productsContainer = document.querySelector(".products_container");
 const cartContainer = document.querySelector(".cart_container");
+const orderM = document.querySelector(".order");
 
 // отримання бази данних
 async function fetchData(){
@@ -43,11 +44,12 @@ function createProductCard(product) {
 
 function createProductCart(product) {
     return `
-        <div class="card" style="width: 18rem;">
-            <img src="img/${product.image}" class="card-img-top" alt="...">
-            <div class="card-body">
+        <div class="card d-flex flex-row p-3" style="height: 12rem;">
+            <img src="img/${product.image}" class="img-fluid rounded-start" alt="...">
+            <div class="card-body bb">
                 <h5 class="card-title">${product.name}</h5>
                 <p class="card-text">$${product.price}</p>
+                <p class="quality"> Кількість: ${product.quantity}</p>
                 <button onclick="delToCart(${product.id})" type="button" class="btn btn-warning">
                     <i class="bi bi-bag-dash-fill"></i> видалити з кошика
                 </button>
@@ -56,7 +58,26 @@ function createProductCart(product) {
     `
 }
 
-
+function createOrder() {
+    return `
+        <form>
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Імя, Фамілія</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">адрес</label>
+                <input type="text" class="form-control" id="exampleInputPassword1">
+            </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Скасувати</button>
+                <button type="submit" class="btn btn-primary">Підтвердити</button>
+            </div>
+        </form>
+    `
+}
 function displayProducts(products){
     if (productsContainer){
         productsContainer.innerHTML = " ";
@@ -74,6 +95,11 @@ function displayCart(cart){
     )
 }
 
+function displayOrderMenu(){
+    
+    orderM.innerHTML = " ";
+    orderM.innerHTML += createOrder();
+}
 // 1.Універсальна функція для збереження будь-яких даних (масивів/об'єктів) у
 function getJsonCookie(cookieName) {
     const allCookies = document.cookie.split('; ');
@@ -146,18 +172,32 @@ const searchProduct = document.querySelector(".searchP")
 //  після завантаження сторінки
 document.addEventListener("DOMContentLoaded",()=>{
     fetchData();
+    
     searchProduct.addEventListener('input', function(){
         const text = searchProduct.value.toLowerCase();
 
         const filtered = products.filter(product => 
                         product.name.toLowerCase().includes(text));
+        if (cart.length>0){
+        const filteredCart = cart.filter(product => product.name.toLowerCase().includes(text));
+            displayCart(filteredCart);
+            if (!filteredCart){
+                orderM.innerHTML ="<h1>У вас немає такого товару</h1>"
+            }
+        }
 
         displayProducts(filtered);
+
+        
     })
-    if (cartContainer){
+    if (cartContainer && cart.length > 0){
         displayCart(cart);
+        displayOrderMenu();
         console.log(cart)
+        
     }
+    
+    
     
 })
 
